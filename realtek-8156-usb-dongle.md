@@ -4,7 +4,7 @@
 - Check current kernel driver version: `modinfo r8152 | grep ^version:`
   If output is smth like `1.12.13` you might want to upgrade. latest is smth like `2.19.2`
 - Install pre-requisites:
-  `sudo apt-get install dh-dkms dkms build-essential linux-headers-$(uname -r)`
+  `sudo apt-get install dh-dkms dkms build-essential pve-headers`
 - Download the latest release form [here](https://github.com/awesometic/realtek-r8152-dkms)
 - Install it using `dpkg -i <filename.deb>`
 - ideally, `reboot`
