@@ -8,3 +8,15 @@
 - Download the latest release form [here](https://github.com/awesometic/realtek-r8152-dkms)
 - Install it using `dpkg -i <filename.deb>`
 - ideally, `reboot`
+
+## After upgrade of kernel version (or sometimes after reboot)
+
+- Use `dmesg | grep r8152` to see if/what is wrong
+- Use `dkms status` to see versions and full names of the packages in question
+- Usually, it is an issue with the dkms module not being rebuilt correctly. Fix like this:
+  - Make sure kernel headers are installed and up to date wiht `sudo apt install pve-headers`
+  - Remove current module using `sudo dkms remove realtek-r8152/2.19.2` (or similar)
+  - Rebuild/reinstall with `sudo dkms install realtek-r8152/2.19.2` (or similar)
+  - Load module using `sudo modprobe r8152`
+  - Reload pve interfaces with `ifreload -a`
+  - (Maybe adjust naming of interfaces in your bridges etc.)
